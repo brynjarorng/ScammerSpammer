@@ -9,6 +9,7 @@ from selenium import webdriver
 
 #Mode to run
 MODE = ''
+counter = 0
 
 names = []
 with open("data/names.csv", newline='') as f:
@@ -40,8 +41,13 @@ state = "rywIo6mYF"
 # Selenium button
 button= "/html/body/div[1]/div[1]/section/div/div[2]/div/form/div[10]/button"
 
+def tab_changer():
+    global counter
+    counter += 1
+    driver.execute_script("window.open('');")
+    driver.switch_to.window(driver.window_handles[counter])
 
-def runner():
+def runner_selenium():
     global MODE
     while True:
     #TODO Add user agent
@@ -84,8 +90,9 @@ def runner():
 def chill():
     global MODE
     MODE = "chill"
-    runner()
+    runner_selenium()
 
+#
 def send_them_to_mars():
     global MODE
     MODE = "Mars"
@@ -93,7 +100,7 @@ def send_them_to_mars():
     threads = []
 
     for i in range(NUMBER_OF_THREADS):
-        t = threading.Thread(target=runner)
+        t = threading.Thread(target=runner_selenium)
         t.daemon = True
         threads.append(t)
     
