@@ -2,9 +2,13 @@ import time
 import csv
 import random
 import datetime
+import threading
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium import webdriver
+
+#Mode to run
+MODE = ''
 
 names = []
 with open("data/names.csv", newline='') as f:
@@ -37,9 +41,10 @@ state = "rywIo6mYF"
 button= "/html/body/div[1]/div[1]/section/div/div[2]/div/form/div[10]/button"
 
 
-def chill ():
-    for i in range(999999):
-        #TODO Add user agent
+def runner():
+    global MODE
+    while True:
+    #TODO Add user agent
         browser = webdriver.Chrome()
         browser.get(address)
 
@@ -70,15 +75,33 @@ def chill ():
         browser.find_element(By.NAME, alternative_email_field).send_keys(email)
         browser.find_element(By.NAME, alternative_password_field).send_keys(random.choice(passwords))
         browser.find_element(By.NAME, birthday_field).send_keys(str(birthday))
-        browser.find_element(By.NAME, state).send_keys(random.choice(state_options))
 
         browser.find_element(By.XPATH, button).click()
 
-        time.sleep(random.uniform(5, 10))
+        if (MODE=="chill"):
+            time.sleep(random.uniform(1,5))
 
-    browser.quit()
+def chill():
+    global MODE
+    MODE = "chill"
+    runner()
 
 def send_them_to_mars():
-    pass
+    global MODE
+    MODE = "Mars"
+    NUMBER_OF_THREADS = 10
+    threads = []
 
-chill()
+    for i in range(NUMBER_OF_THREADS):
+        t = threading.Thread(target=runner)
+        t.daemon = True
+        threads.append(t)
+    
+    for i in range(NUMBER_OF_THREADS):
+        threads[i].start()
+    
+    for i in range(NUMBER_OF_THREADS):
+        threads[i].join()
+
+#chill()
+send_them_to_mars()
