@@ -41,11 +41,11 @@ state = "rywIo6mYF"
 # Selenium button
 button= "/html/body/div[1]/div[1]/section/div/div[2]/div/form/div[10]/button"
 
-def tab_changer():
+def tab_changer(browser):
     global counter
     counter += 1
-    driver.execute_script("window.open('');")
-    driver.switch_to.window(driver.window_handles[counter])
+    browser.execute_script("window.open('');")
+    browser.switch_to.window(browser.window_handles[counter])
 
 def runner_selenium():
     global MODE
