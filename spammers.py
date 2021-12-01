@@ -7,12 +7,12 @@ from selenium.webdriver.common.keys import Keys
 from selenium import webdriver
 
 names = []
-with open("names.csv", newline='') as f:
+with open("data/names.csv", newline='') as f:
     for l in csv.reader(f, delimiter=','):
         names.append(l[0])
 
 passwords = []
-with open("passwords.csv", newline='') as f:
+with open("data/passwords.csv", newline='') as f:
     for l in csv.reader(f, delimiter=','):
         passwords.append(l[0])
 
