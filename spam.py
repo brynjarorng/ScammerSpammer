@@ -25,10 +25,45 @@ cookies = {
     'language': 'en',
 }
 
-proxy = {
-"http": 'https://193.163.116.14:1080',
-"http": 'https://193.162.105.112:5678',
-"http" :'https://193.163.116.30:1080' 
+proxies = {
+"http": '5.186.155.151:21520',
+"http": '78.156.109.221:14003',
+"http": '176.20.154.49:10789',
+"http": '37.97.23.100:63642',
+"http": '176.20.154.49:17613',
+"http": '95.154.20.222:26414',
+"http": '95.154.20.222:22134',
+"http": '37.97.23.100:17398',
+"http": '95.154.20.222:33145',
+"http": '84.238.33.155:10200',
+"http": '5.186.155.151:53135',
+"http": '5.186.155.151:22988',
+"http": '37.97.23.100:61737',
+"http": '95.154.20.222:19173',
+"http": '176.20.154.49:47478',
+"http": '95.154.20.222:31318',
+"http": '176.20.154.49:57368',
+"http": '176.20.154.49:52353',
+"http": '178.157.228.96:19547',
+"http": '176.20.154.49:52678',
+"http": '5.103.137.240:1080',
+"http": '185.89.43.41:1085',
+"http": '93.176.85.240:39309',
+"http": '93.164.33.114:41028',
+"http": '185.89.42.53:1085',
+"http": '5.103.139.93:1080',
+"http": '185.89.42.91:1085',
+"http": '89.239.212.208:1080',
+"http": '45.159.115.62:1080',
+"http": '80.63.107.91:4145',
+"http": '185.89.43.225:1085',
+"http": '45.159.115.60:1080',
+"http": '185.89.42.102:1085',
+"http": '77.68.237.158:47566',
+"http": '93.163.52.152:4145',
+"http": '87.60.31.9:4145',
+"http": '93.167.67.69:4145',
+"http": '185.89.42.47:1085',
 }
 
 def chill():
@@ -69,8 +104,8 @@ def chill():
         'User-Agent': random.choice(user_agents)
         }
 
-        response = requests.post(url, headers=headers, cookies=cookies, files=files ,proxies=proxy)
-        print(counter)
+        response = requests.post(url, headers=headers, cookies=cookies, files=files ,proxies=proxies)
+        print(response.content)
 
 
 def send_them_to_mars():
@@ -88,5 +123,5 @@ def send_them_to_mars():
     for i in range(NUMBER_OF_THREADS):
         threads[i].join()
 
-#chill()
-send_them_to_mars()
+chill()
+#send_them_to_mars()
