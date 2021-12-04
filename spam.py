@@ -105,7 +105,7 @@ def chill():
         }
 
         response = requests.post(url, headers=headers, cookies=cookies, files=files ,proxies=proxies)
-        print(response.content)
+        print(counter)
 
 
 def send_them_to_mars():
