@@ -22,7 +22,7 @@ with open("data/passwords.csv", newline='') as f:
         passwords.append(l[0])
 
 #Target address for using selenium
-address = "https://supportdanmarkstekniskeuniversitet.moonfruit.com/"
+address = "https://supportdanmarkstekniskeuniversitet.weebly.com/"
 
 #Target address for using request
 post_address = "https://secure.sitemakerlive.com/_form/submit"
@@ -30,16 +30,16 @@ post_address = "https://secure.sitemakerlive.com/_form/submit"
 
 # Fields names to target
 name_field = "ByAg5riaXYK"
-email_field = "SJJW9HopXYt"
+email_field = "_u775833441838287881"
 dtu_username = "rJIBQDoamFF"
-password_field = "rkQwiTmYt"
-alternative_email_field = "SkMvjT7Kt"
-alternative_password_field = "r1-vs6mKF"
-birthday_field = "r1KLjp7Kt"
+password_field = "_u127872288731110885"
+alternative_email_field = "_u698974889672718481"
+alternative_password_field = "_u187973938768131043"
+birthday_field = "_u979731754128240284"
 state = "rywIo6mYF"
 
 # Selenium button
-button= "/html/body/div[1]/div[1]/section/div/div[2]/div/form/div[10]/button"
+button= "/html/body/div[1]/div[2]/div/div/div/div/div/div/div[2]/form/div[3]/a/span"
 
 def tab_changer(browser):
     global counter
@@ -49,9 +49,10 @@ def tab_changer(browser):
 
 def runner_selenium():
     global MODE
+    browser = webdriver.Chrome()
     while True:
     #TODO Add user agent
-        browser = webdriver.Chrome()
+        
         browser.get(address)
 
         # Generate name , first middle last and full
@@ -74,9 +75,9 @@ def runner_selenium():
         #Generate random email
         email = f'{f_name.lower()}{random.randrange(0, 99)}@{random.choice(["gmail.com", "outlook.com", "hotmail.com", "live.com", "sapo.pt"])}'
 
-        browser.find_element(By.NAME, name_field).send_keys(full_name)
+        #browser.find_element(By.NAME, name_field).send_keys(full_name)
         browser.find_element(By.NAME, email_field).send_keys(s_id + "@student.dtu.dk")
-        browser.find_element(By.NAME, dtu_username).send_keys(s_id)
+        #browser.find_element(By.NAME, dtu_username).send_keys(s_id)
         browser.find_element(By.NAME, password_field).send_keys(random.choice(passwords))
         browser.find_element(By.NAME, alternative_email_field).send_keys(email)
         browser.find_element(By.NAME, alternative_password_field).send_keys(random.choice(passwords))
